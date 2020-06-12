@@ -5,7 +5,7 @@ const db = require("./data/db");
 //ADD A BLOG
 router.post("/api/posts", (req, res) => {
 
-    if(!req.body.tile || !req.body.contents) {
+    if(!req.title && !req.contents) {
         res.status(400).json({
             errorMessage: "Please provide title and sontents for the post"
         })
@@ -24,13 +24,13 @@ router.post("/api/posts", (req, res) => {
 //ADD A COMMENT
 router.post("/api/posts/:id/comments", (req, res) => {
 
-    if(!req.body.post_id){
+    if(!req.post_id){
         res.status(404).json({
             message: "The post with the specifiec ID does not exist"
         })
     }
 
-    if(!req.body.text){
+    if(!req.text){
         res.status(400).json({
             errorMessage: "Please provide text for the comment."
         })
@@ -86,7 +86,7 @@ router.get("/api/posts/:id/comments", (req, res) => {
         })
     }
 
-    db.findCommentById(req.params.id)
+    db.findPostComments(req.params.id)
     .then(post => {
         res.status(200).json(post)
     })
@@ -108,7 +108,9 @@ router.delete("/api/posts/:id", (req, res) => {
 
     db.remove(req.params.id)
     .then((post) => {
-        res.status(500).json(post)
+        res.status(200).json({
+            message: "This post has been deleted"
+        })
     })
     .catch((err) => {
         res.status(500).json({

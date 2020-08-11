@@ -80,9 +80,8 @@ A Comment in the database has the following structure:
 
 Configure the API to handle to the following routes:
 
-| Method | Endpoint                | Description                                                                                                                                                                 |
-| ------ | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| POST   | /api/posts              | Creates a post using the information sent inside the `request body`.     [done]                                                                                                   |
+| Method | Endpoint | Description ------------------------------------------ |
+| POST   | /api/posts | Creates a post using the information sent inside the `request body`.     [done]                                                                                                   |
 
 <!--  -->
 | POST   | /api/posts/:id/comments | Creates a comment for the post with the specified id using information sent inside of the `request body`.                                                                   |
